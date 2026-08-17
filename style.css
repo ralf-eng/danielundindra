@@ -167,6 +167,15 @@ Text Domain: danielundindra
     text-shadow: 0 1px 2px rgb(44 51 44 / 0.55), 0 2px 10px rgb(44 51 44 / 0.35);
 }
 
+/* Reissleine gegen ein überlaufendes Logo. Auf schmalen Schirmen greift zwar
+   die gestapelte Fassung (Dashboard → Logos), aber das Querlogo ist bei 60px
+   Höhe 387px breit – ein Telefon ist 375px. Trüge jemand später wieder ein
+   breites Motiv ein, schöbe es sonst die ganze Kopfleiste auseinander. */
+.wprbn-logo {
+    max-width: min(100%, 62vw);
+    height: auto;
+}
+
 /* ── Fußzeile ─────────────────────────────────────────────────────────────
    Impressum und Datenschutz hängen aus dem Fußmenü an der Copyright-Zeile
    (siehe functions.php). Sie sollen mitlaufen, nicht auffallen. */
