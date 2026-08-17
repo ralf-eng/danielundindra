@@ -10,7 +10,7 @@ python3 -m venv .venv
 
 # Great Vibes aus dem Schriftverzeichnis der Seite holen und entpacken
 curl -o great-vibes.woff2 \
-  "https://hochzeit-daniel-indra.de/wp-content/uploads/fonts/wprbn/great-vibes/great-vibes-400-normal-latin.woff2"
+  "https://www.hochzeit-daniel-indra.de/wp-content/uploads/fonts/wprbn/great-vibes/great-vibes-400-normal-latin.woff2"
 .venv/bin/python -c "from fontTools.ttLib import TTFont; f=TTFont('great-vibes.woff2'); f.flavor=None; f.save('great-vibes.ttf')"
 
 .venv/bin/python logo.py
