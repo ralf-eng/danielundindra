@@ -184,19 +184,13 @@ Text Domain: danielundindra
     height: auto;
 }
 
-/* ── Fußzeile ─────────────────────────────────────────────────────────────
-   Impressum und Datenschutz hängen aus dem Fußmenü an der Copyright-Zeile
-   (siehe functions.php). Sie sollen mitlaufen, nicht auffallen. */
-.dui-footer-links a {
-    color: inherit;
-    text-decoration: none;
-    border-block-end: 0.5px solid var(--border-strong);
-}
-
-.dui-footer-links a:hover,
-.dui-footer-links a:focus-visible {
-    color: var(--text-primary);
-    border-block-end-color: var(--dui-gold);
+/* ── Fußzeilen-Menü ───────────────────────────────────────────────────────
+   Der generische Footer-Menü-Renderer des Parents (assets/css/menu.css)
+   liefert Farbe/Größe; hier nur der site-eigene Gold-Akzent beim Hover
+   (ersetzt den früheren manuellen dui-footer-links-Hack). */
+.wprbn-menu--footer > .wprbn-menu__list > .wprbn-menu__item > .wprbn-menu__link:hover,
+.wprbn-menu--footer > .wprbn-menu__list > .wprbn-menu__item > .wprbn-menu__link:focus-visible {
+    color: var(--dui-gold);
 }
 
 /* ── Galerie ──────────────────────────────────────────────────────────────
