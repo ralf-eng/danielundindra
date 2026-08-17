@@ -163,8 +163,16 @@ Text Domain: danielundindra
             drop-shadow(0 2px 10px rgb(44 51 44 / 0.35));
 }
 
-.site-header:not(.is-shrunk):not(.is-sticky) .site-nav a {
+.site-header:not(.is-shrunk):not(.is-sticky) .site-nav a,
+.site-header:not(.is-shrunk):not(.is-sticky) .wprbn-menu--header a {
     text-shadow: 0 1px 2px rgb(44 51 44 / 0.55), 0 2px 10px rgb(44 51 44 / 0.35);
+}
+
+/* Der Menü-Knopf besteht aus Balken, nicht aus Text – deshalb drop-shadow.
+   Ohne ihn verschwindet er auf dem Telefon vollständig im hellen Himmel. */
+.site-header:not(.is-shrunk):not(.is-sticky) .wprbn-menu-toggle {
+    filter: drop-shadow(0 1px 2px rgb(44 51 44 / 0.55))
+            drop-shadow(0 2px 8px rgb(44 51 44 / 0.35));
 }
 
 /* Reissleine gegen ein überlaufendes Logo. Auf schmalen Schirmen greift zwar
