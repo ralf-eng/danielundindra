@@ -1,0 +1,26 @@
+/*
+Theme Name: Daniel & Indra – Hochzeit
+Theme URI: https://www.hochzeit-daniel-indra.de
+Author: Ralf Brinkbäumer
+Description: Child Theme des wprbn Themes für die Hochzeits-Homepage von Daniel und Indra Reismann (12.09.2026). Erbt Layout, Dashboard und Funktionen des Parent-Themes; eigene Anpassungen (Farben, Schrift, Overrides) werden hier ergänzt.
+Template: wprbn_theme
+Version: 1.0.0
+License: Private
+Text Domain: danielundindra
+*/
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Child-Theme-Overrides für die Hochzeits-Homepage Daniel & Indra
+
+   Das Parent-Theme (wprbn) liefert alle Basis-Styles, Farb-Tokens und das
+   main.css. Diese Datei enthält ausschließlich Anpassungen, die von den
+   Parent-Defaults abweichen sollen.
+
+   Regeln (siehe Parent-CLAUDE.md):
+   - Immer CSS Custom Properties aus :root / [data-theme] verwenden,
+     keine hardcodierten Farbwerte.
+   - Overrides, die gegen WordPress- oder Parent-Layer-Styles ankämpfen
+     müssen, außerhalb aller @layer ans Ende schreiben.
+
+   Aktuell noch keine Overrides – Design (Farben/Typografie) folgt.
+   ────────────────────────────────────────────────────────────────────────── */
