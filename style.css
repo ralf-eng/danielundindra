@@ -215,9 +215,13 @@ Text Domain: danielundindra
 
     /* Der Kern-Galerieblock lässt das letzte Bild einer angebrochenen Reihe
        auf die volle Breite laufen – bei drei Fotos stand das dritte riesig
-       unter zwei kleinen. Feste Halbe Breite hält das Raster ruhig. */
-    .wp-block-gallery.has-nested-images.columns-3 figure.wp-block-image {
-        width: calc(50% - var(--wp--style--unstable-gallery-gap, 1rem) / 2);
+       unter zwei kleinen. Die Breite allein genügt nicht: das flex-grow des
+       Blocks zieht die Kachel trotzdem auf. Beides muss weg.
+       Das :not(#individual-image) hebt die Spezifität auf die der
+       Kern-Regel – genau so schreibt WordPress sie selbst. */
+    .wp-block-gallery.has-nested-images.columns-3 figure.wp-block-image:not(#individual-image) {
+        width: calc(50% - var(--wp--style--unstable-gallery-gap, 16px) / 2);
+        flex-grow: 0;
     }
 
     /* Vier Kacheln nebeneinander passen nicht; ohne Zutun bricht die
