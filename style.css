@@ -212,4 +212,24 @@ Text Domain: danielundindra
     .wp-block-gallery.has-nested-images figure.wp-block-image img {
         aspect-ratio: 3 / 4;
     }
+
+    /* Der Kern-Galerieblock lässt das letzte Bild einer angebrochenen Reihe
+       auf die volle Breite laufen – bei drei Fotos stand das dritte riesig
+       unter zwei kleinen. Feste Halbe Breite hält das Raster ruhig. */
+    .wp-block-gallery.has-nested-images.columns-3 figure.wp-block-image {
+        width: calc(50% - var(--wp--style--unstable-gallery-gap, 1rem) / 2);
+    }
+
+    /* Vier Kacheln nebeneinander passen nicht; ohne Zutun bricht die
+       Sekunden-Kachel allein in die zweite Reihe. Zwei mal zwei steht ruhiger. */
+    .dui-countdown__reihe {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 20rem;
+        margin-inline: auto;
+    }
+
+    .dui-countdown__feld {
+        min-width: 0;
+    }
 }
