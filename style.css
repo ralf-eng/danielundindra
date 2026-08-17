@@ -175,6 +175,27 @@ Text Domain: danielundindra
             drop-shadow(0 2px 8px rgb(44 51 44 / 0.35));
 }
 
+/* Striche des Menü-Knopfs je nach Untergrund.
+
+   Der Kopf ist transparent, liegt also mal auf dem Foto, mal auf dem
+   Vollton-Titelband. Eine einzige Farbe kann nicht beides bedienen: Auf dem
+   Band (das ist genau dieses Grün) wären grüne Striche unsichtbar.
+
+   `--header-control-color` steht im Parent auf dem <html>-Element. Hier auf
+   dem <body> neu gesetzt gewinnt der Wert für alles darin – der Kopf gehört
+   dazu. Ausgewählt wird über den Hero-Bereich, der als Geschwister *nach* dem
+   Kopf steht; :has() am body kommt trotzdem an ihn heran.
+
+   Die beiden Klassen sind eigenständige Namen: --page trifft nicht
+   --page_plain, die Fälle können sich also nicht in die Quere kommen. */
+body:has(.wprbn-hero--page) {
+    --header-control-color: #5f7361;
+}
+
+body:has(.wprbn-hero--plain) {
+    --header-control-color: #ffffff;
+}
+
 /* Reissleine gegen ein überlaufendes Logo. Auf schmalen Schirmen greift zwar
    die gestapelte Fassung (Dashboard → Logos), aber das Querlogo ist bei 60px
    Höhe 387px breit – ein Telefon ist 375px. Trüge jemand später wieder ein

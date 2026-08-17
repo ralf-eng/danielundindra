@@ -77,3 +77,32 @@ add_filter('render_block_data', static function (array $block): array {
     return $block;
 });
 
+/**
+ * Menü-Knopf auf schmalen Schirmen nach links.
+ *
+ * Der Kopf ist dort zweizeilig: Zeile 1 trägt die mittige Marke, Zeile 2 den
+ * Knopf – ebenfalls mittig, was unter dem zentrierten Logo verloren aussieht.
+ * Der Knopf rückt deshalb in Zeile 1 an den linken Rand, das Logo bleibt mittig.
+ *
+ * Warum hier und nicht in der style.css: `@media` kann keine CSS-Variable
+ * auswerten, der Umschaltpunkt ist aber eine Dashboard-Option. Der Block muss
+ * also serverseitig entstehen – dieselbe Bauweise wie wprbn_menu_css_mobile()
+ * im Parent. Die Kaskade stimmt von selbst, weil wp_head nach den Stylesheets
+ * ausgegeben wird.
+ *
+ * `.header-inner` ist ein Raster, das sich per Stylesheet nicht auf flex
+ * umstellen lässt (display:grid !important im Parent). Position also über
+ * grid-row und justify-self, nicht über die Anordnungsrichtung.
+ */
+add_action('wp_head', static function (): void {
+    $bp = (int) (get_option('wprbn_options', [])['menu_mobile_breakpoint'] ?? 767);
+    $bp = max(320, min(1400, $bp));
+
+    printf(
+        '<style id="dui-menu-mobil">@media (max-width:%dpx){'
+        . '.header-inner .wprbn-menu-slot{grid-row:1;justify-self:start;align-self:center;}'
+        . '}</style>' . "\n",
+        $bp
+    );
+}, 13); // nach den Farb-Ausgaben des Parents (Priorität 12)
+
