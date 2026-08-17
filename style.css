@@ -132,6 +132,22 @@ Text Domain: danielundindra
     text-shadow: 0 1px 2px rgb(44 51 44 / 0.55), 0 2px 14px rgb(44 51 44 / 0.35);
 }
 
+/* Namen mittig statt unten links – das ist die klassische Haltung einer
+   Hochzeitsseite und trägt den Kalligrafie-Schriftzug deutlich besser. */
+.wprbn-hero--page .wprbn-hero__inner {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Alle Paarfotos sind Hochformate. Im breiten Hero schneidet ein mittiger
+   Ausschnitt die Köpfe ab, deshalb sitzt der Bildausschnitt weiter oben.
+   Auf schmalen Schirmen greift das Hochformat aus der Seiten-Meta, dort
+   füllt das Bild die Höhe ohnehin aus und der Wert bleibt folgenlos. */
+.wprbn-hero--page {
+    background-position: 50% 20%;
+}
+
 /* ── Galerie ──────────────────────────────────────────────────────────────
    Die Fotos sind Hochformate. Ein festes Seitenverhältnis hält das Raster
    ruhig, ohne die Gesichter zu beschneiden (object-position oben). */
