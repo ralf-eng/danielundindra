@@ -148,6 +148,25 @@ Text Domain: danielundindra
     background-position: 50% 20%;
 }
 
+/* ── Kopfleiste über dem Foto ─────────────────────────────────────────────
+   Der Header ist transparent, Logo und Menü stehen cremefarben direkt auf
+   dem Bild. Über hellem Himmel verschwanden sie darin. Dieselbe Antwort wie
+   beim Hero-Titel: Schatten statt Schleier, damit das Foto hell bleibt.
+
+   Nur die Zustände über dem Bild bekommen ihn. Fährt die Leiste ein, greift
+   die Sticky-Fassung auf gedecktem Grund – dort wäre ein Schatten schmutzig. */
+.wprbn-logo--default-light,
+.wprbn-logo--default-dark,
+.wprbn-logo--mobile-light,
+.wprbn-logo--mobile-dark {
+    filter: drop-shadow(0 1px 2px rgb(44 51 44 / 0.5))
+            drop-shadow(0 2px 10px rgb(44 51 44 / 0.35));
+}
+
+.site-header:not(.is-shrunk):not(.is-sticky) .site-nav a {
+    text-shadow: 0 1px 2px rgb(44 51 44 / 0.55), 0 2px 10px rgb(44 51 44 / 0.35);
+}
+
 /* ── Galerie ──────────────────────────────────────────────────────────────
    Die Fotos sind Hochformate. Ein festes Seitenverhältnis hält das Raster
    ruhig, ohne die Gesichter zu beschneiden (object-position oben). */
