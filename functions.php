@@ -98,11 +98,25 @@ add_action('wp_head', static function (): void {
     $bp = (int) (get_option('wprbn_options', [])['menu_mobile_breakpoint'] ?? 767);
     $bp = max(320, min(1400, $bp));
 
+    // Gegen eine sehr bestimmte Parent-Regel: Weil das Logo mittig steht,
+    // setzt menu.css den Knopf mit
+    //   .logo-align--center.site-header .header-inner > .wprbn-menu-slot
+    //   { grid-area: 2 / 1 / auto / -1 !important; justify-self: center !important; }
+    // absichtlich in Zeile 2 unter die Marke. Ein schlichtes
+    // `.header-inner .wprbn-menu-slot` verliert dagegen. Deshalb derselbe
+    // Selektor plus vorangestelltes `body` – das hebt die Spezifität um eine
+    // Stufe und gewinnt unabhängig von der Reihenfolge.
+    $sel = 'body .logo-align--center.site-header .header-inner > .wprbn-menu-slot,'
+         . 'body .logo-align--center.site-header .wp-block-group.header-inner > .wprbn-menu-slot';
+
     printf(
-        '<style id="dui-menu-mobil">@media (max-width:%dpx){'
-        . '.header-inner .wprbn-menu-slot{grid-row:1;justify-self:start;align-self:center;}'
-        . '}</style>' . "\n",
-        $bp
+        '<style id="dui-menu-mobil">@media (max-width:%dpx){%s{'
+        . 'grid-area:1/1/auto/-1!important;'
+        . 'justify-self:start!important;'
+        . 'align-self:center!important;'
+        . '}}</style>' . "\n",
+        $bp,
+        $sel
     );
 }, 13); // nach den Farb-Ausgaben des Parents (Priorität 12)
 
