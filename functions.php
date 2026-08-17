@@ -53,6 +53,51 @@ add_action('wp_enqueue_scripts', static function (): void {
 }, 11); // Priorität 11: nach dem Parent-Enqueue (Standard 10).
 
 /**
+ * Impressum und Datenschutz in die Fußzeile hängen.
+ *
+ * Der Block-Footer des Parents kennt nur die Copyright-Zeile, keine
+ * Navigation. Die Links müssen aber von jeder Seite aus erreichbar sein.
+ *
+ * Die Einträge kommen aus dem Menü an der Position „Footer-Navigation" –
+ * so bleiben sie im Menü-Editor pflegbar, statt hier fest verdrahtet zu sein.
+ * Ist dort kein Menü zugewiesen, bleibt die Zeile unverändert.
+ */
+add_filter('render_block', static function (string $content, array $block): string {
+    if (($block['blockName'] ?? '') !== 'core/paragraph') {
+        return $content;
+    }
+    if (!str_contains((string) ($block['attrs']['className'] ?? ''), 'footer-copy')) {
+        return $content;
+    }
+
+    $orte = get_nav_menu_locations();
+    $menu = isset($orte['footer']) ? wp_get_nav_menu_object($orte['footer']) : null;
+    if (!$menu) {
+        return $content;
+    }
+
+    $links = [];
+    foreach ((array) wp_get_nav_menu_items($menu->term_id) as $item) {
+        if ((int) $item->menu_item_parent !== 0) {
+            continue; // nur die oberste Ebene
+        }
+        $links[] = '<a href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a>';
+    }
+    if (!$links) {
+        return $content;
+    }
+
+    $zusatz = '<span class="dui-footer-links">' . implode(' · ', $links) . '</span>';
+
+    return preg_replace_callback(
+        '#(</p>)#',
+        static fn(array $m): string => ' · ' . $zusatz . $m[1],
+        $content,
+        1
+    ) ?? $content;
+}, 20, 2); // Priorität 20: nach dem Footer-Text-Filter des Parents (10).
+
+/**
  * Fix: Site-Header + Hero + Footer im Child-Theme wiederherstellen.
  *
  * Die Parent-Templates referenzieren die Template-Parts hart mit
