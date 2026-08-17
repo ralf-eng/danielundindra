@@ -169,10 +169,20 @@ Text Domain: danielundindra
 }
 
 /* Der Menü-Knopf besteht aus Balken, nicht aus Text – deshalb drop-shadow.
-   Ohne ihn verschwindet er auf dem Telefon vollständig im hellen Himmel. */
-.site-header:not(.is-shrunk):not(.is-sticky) .wprbn-menu-toggle {
-    filter: drop-shadow(0 1px 2px rgb(44 51 44 / 0.55))
-            drop-shadow(0 2px 8px rgb(44 51 44 / 0.35));
+
+   Auf dem Foto sind die Striche grün und sitzen links, also über dem dunklen
+   Laub am Bildrand. Ein dunkler Schatten hilft dort nicht, er verschluckt sie
+   erst recht. Ein heller Saum trennt sie von beidem: vom dunklen Laub und vom
+   hellen Himmel. So bleiben sie grün und stehen trotzdem überall. */
+body:has(.wprbn-hero--page) .site-header:not(.is-shrunk):not(.is-sticky) .wprbn-menu-toggle {
+    filter: drop-shadow(0 0 1px rgb(255 255 255 / 0.95))
+            drop-shadow(0 1px 4px rgb(255 255 255 / 0.65));
+}
+
+/* Auf dem Vollton-Titelband stehen weiße Striche auf ruhigem Grund –
+   da wäre jeder Saum nur Schmutz. */
+body:has(.wprbn-hero--plain) .site-header .wprbn-menu-toggle {
+    filter: none;
 }
 
 /* Striche des Menü-Knopfs je nach Untergrund.
