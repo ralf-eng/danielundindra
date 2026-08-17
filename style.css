@@ -22,5 +22,103 @@ Text Domain: danielundindra
    - Overrides, die gegen WordPress- oder Parent-Layer-Styles ankämpfen
      müssen, außerhalb aller @layer ans Ende schreiben.
 
-   Aktuell noch keine Overrides – Design (Farben/Typografie) folgt.
+   Farben und Schriften stehen im Dashboard (wprbn Options), nicht hier.
+   Hier steht nur, was das Parent nicht kennt.
    ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Marken-Töne aus dem Ringkissen ───────────────────────────────────────
+   Gold, Eukalyptus und Salbei liegen im Dashboard als custom_1…custom_5.
+   Für eigene Bausteine hier unter sprechenden Namen. */
+:root {
+    --dui-gold:        #b08d45;
+    --dui-gold-hell:   #c9a961;
+    --dui-eukalyptus:  #5f7361;
+    --dui-salbei:      #c9d2bc;
+    --dui-trockenblume:#ede3d0;
+}
+
+/* ── Countdown ────────────────────────────────────────────────────────────
+   Markup aus inc/countdown/countdown.php. Vier Kacheln in einer Reihe,
+   die auf schmalen Schirmen zweispaltig umbrechen. */
+.dui-countdown {
+    text-align: center;
+    margin-block: var(--space-xl, 3rem);
+}
+
+.dui-countdown__titel {
+    font-family: var(--font-eyebrow, inherit);
+    font-size: var(--size-eyebrow, 0.8125rem);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dui-gold);
+    margin-block-end: 1.5rem;
+}
+
+/* Der Satz trägt die Aussage für Vorlesewerkzeuge – sichtbar bleibt er als
+   ruhige Unterzeile unter den Kacheln. */
+.dui-countdown__satz {
+    order: 2;
+    font-family: var(--font-blockquote, inherit);
+    font-style: italic;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    color: var(--text-muted);
+    margin-block-start: 1.75rem;
+}
+
+.dui-countdown__reihe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.75rem, 3vw, 2.5rem);
+}
+
+.dui-countdown__feld {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: clamp(4.5rem, 14vw, 7rem);
+    padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.5rem, 1.5vw, 1rem);
+    border: 0.5px solid var(--border);
+    border-block-start: 2px solid var(--dui-gold);
+    background: var(--bg-tertiary);
+}
+
+.dui-countdown__zahl {
+    font-family: var(--font-h1, serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    line-height: 1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.dui-countdown__wort {
+    font-family: var(--font-eyebrow, inherit);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+}
+
+/* Ist der Tag vorbei, treten die Kacheln zurück und der Satz übernimmt. */
+.dui-countdown.is-vorbei .dui-countdown__reihe { display: none; }
+.dui-countdown.is-vorbei .dui-countdown__satz {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    color: var(--dui-gold);
+}
+
+/* ── Galerie ──────────────────────────────────────────────────────────────
+   Die Fotos sind Hochformate. Ein festes Seitenverhältnis hält das Raster
+   ruhig, ohne die Gesichter zu beschneiden (object-position oben). */
+.wp-block-gallery.has-nested-images figure.wp-block-image img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+@media (max-width: 640px) {
+    .wp-block-gallery.has-nested-images figure.wp-block-image img {
+        aspect-ratio: 3 / 4;
+    }
+}
