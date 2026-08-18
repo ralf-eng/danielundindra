@@ -271,3 +271,33 @@ body:has(.wprbn-hero--plain) {
         min-width: 0;
     }
 }
+
+/* ── Upload-Knopf auf „Eure Fotos" ─────────────────────────────────────────
+   Führt direkt zur öffentlichen Immich-Freigabe mit Upload-Recht
+   (fotos.hochzeit-daniel-indra.de/s/upload). Eigene fremde App-Oberfläche,
+   deshalb bewusst ein Knopf zum neuen Tab statt eines eingebetteten iframes –
+   Immichs eigene Kopfleiste und Symbole passen nicht zu dieser Seite, und ein
+   iframe aus fremder Herkunft bleibt von deren CSP/Layout abhängig.
+
+   Optik wie „Neue Fotos laden" (siehe wprbn-immich.css), aber als
+   ausgefüllter Knopf in Gold – das ist hier die Haupthandlung, nicht die
+   Nebenfunktion. */
+.dui-upload-cta {
+    display: inline-block;
+    margin-block: var(--space-md, 1.5rem);
+    padding: 0.85em 2.2em;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    background: var(--dui-gold);
+    border: 0.5px solid var(--dui-gold);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dui-upload-cta:hover,
+.dui-upload-cta:focus-visible {
+    color: var(--dui-gold);
+    background: transparent;
+}
