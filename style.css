@@ -168,15 +168,22 @@ Text Domain: danielundindra
     text-shadow: 0 1px 2px rgb(44 51 44 / 0.55), 0 2px 10px rgb(44 51 44 / 0.35);
 }
 
-/* Der Menü-Knopf besteht aus Balken, nicht aus Text – deshalb drop-shadow.
+/* Menü-Knopf auf dem Hero-Foto: grüne Striche auf heller Scheibe.
 
-   Auf dem Foto sind die Striche grün und sitzen links, also über dem dunklen
-   Laub am Bildrand. Ein dunkler Schatten hilft dort nicht, er verschluckt sie
-   erst recht. Ein heller Saum trennt sie von beidem: vom dunklen Laub und vom
-   hellen Himmel. So bleiben sie grün und stehen trotzdem überall. */
+   Die Striche sind ein maskiertes ::before in #5f7361. Frei auf dem Bild
+   standen sie links über dem dunklen Laub am Rand – dort ist Dunkelgrün auf
+   Dunkelgrün praktisch nicht wahrnehmbar. Weder ein dunkler Schatten noch ein
+   heller Saum haben das gerettet: ein Saum ist ein Pixel breit, das Laub
+   dahinter bleibt.
+
+   Die Scheibe löst es an der Wurzel, statt am Rand nachzubessern. Sie bringt
+   ihren eigenen Untergrund mit, also steht das Grün unabhängig davon, was im
+   Foto gerade darunter liegt – und bleibt das gewünschte Grün. 44px bleiben
+   als Tippfläche erhalten. */
 body:has(.wprbn-hero--page) .site-header:not(.is-shrunk):not(.is-sticky) .wprbn-menu-toggle {
-    filter: drop-shadow(0 0 1px rgb(255 255 255 / 0.95))
-            drop-shadow(0 1px 4px rgb(255 255 255 / 0.65));
+    background: rgb(248 245 239 / 0.92);
+    border-radius: 50%;
+    filter: drop-shadow(0 1px 6px rgb(44 51 44 / 0.28));
 }
 
 /* Auf dem Vollton-Titelband stehen weiße Striche auf ruhigem Grund –
