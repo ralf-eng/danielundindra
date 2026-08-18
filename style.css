@@ -168,50 +168,18 @@ Text Domain: danielundindra
     text-shadow: 0 1px 2px rgb(44 51 44 / 0.55), 0 2px 10px rgb(44 51 44 / 0.35);
 }
 
-/* Menü-Knopf auf dem Hero-Foto: grüne Striche auf heller Scheibe.
+/* Der Menü-Knopf braucht hier keine Regel mehr.
 
-   Die Striche sind ein maskiertes ::before in #5f7361. Frei auf dem Bild
-   standen sie links über dem dunklen Laub am Rand – dort ist Dunkelgrün auf
-   Dunkelgrün praktisch nicht wahrnehmbar. Weder ein dunkler Schatten noch ein
-   heller Saum haben das gerettet: ein Saum ist ein Pixel breit, das Laub
-   dahinter bleibt.
+   Die helle Scheibe unter Hamburger und Modus-Umschalter ist ins Parent
+   gewandert: Menü-Tab -> "Hinterlegung" (menu_control_backdrop = circle),
+   dazu die Bedienelement-Farbe #5f7361. Damit sieht der Knopf auf jeder
+   Seite gleich aus: gruene Striche auf cremefarbener Scheibe, auf dem
+   Hero-Foto wie auf dem Vollton-Titelband.
 
-   Die Scheibe löst es an der Wurzel, statt am Rand nachzubessern. Sie bringt
-   ihren eigenen Untergrund mit, also steht das Grün unabhängig davon, was im
-   Foto gerade darunter liegt – und bleibt das gewünschte Grün. 44px bleiben
-   als Tippfläche erhalten. */
-body:has(.wprbn-hero--page) .site-header:not(.is-shrunk):not(.is-sticky) .wprbn-menu-toggle {
-    background: rgb(248 245 239 / 0.92);
-    border-radius: 50%;
-    filter: drop-shadow(0 1px 6px rgb(44 51 44 / 0.28));
-}
-
-/* Auf dem Vollton-Titelband stehen weiße Striche auf ruhigem Grund –
-   da wäre jeder Saum nur Schmutz. */
-body:has(.wprbn-hero--plain) .site-header .wprbn-menu-toggle {
-    filter: none;
-}
-
-/* Striche des Menü-Knopfs je nach Untergrund.
-
-   Der Kopf ist transparent, liegt also mal auf dem Foto, mal auf dem
-   Vollton-Titelband. Eine einzige Farbe kann nicht beides bedienen: Auf dem
-   Band (das ist genau dieses Grün) wären grüne Striche unsichtbar.
-
-   `--header-control-color` steht im Parent auf dem <html>-Element. Hier auf
-   dem <body> neu gesetzt gewinnt der Wert für alles darin – der Kopf gehört
-   dazu. Ausgewählt wird über den Hero-Bereich, der als Geschwister *nach* dem
-   Kopf steht; :has() am body kommt trotzdem an ihn heran.
-
-   Die beiden Klassen sind eigenständige Namen: --page trifft nicht
-   --page_plain, die Fälle können sich also nicht in die Quere kommen. */
-body:has(.wprbn-hero--page) {
-    --header-control-color: #5f7361;
-}
-
-body:has(.wprbn-hero--plain) {
-    --header-control-color: #ffffff;
-}
+   Die fruehere Fassung unterschied beide Faelle ueber :has() und gab dem
+   Band weisse Striche. Das ist entfallen: Sobald das Band die Scheibe
+   ebenfalls bekommt, waere Weiss auf Creme unsichtbar - und eine
+   einheitliche Optik ist ohnehin die ruhigere Loesung. */
 
 /* Reissleine gegen ein überlaufendes Logo. Auf schmalen Schirmen greift zwar
    die gestapelte Fassung (Dashboard → Logos), aber das Querlogo ist bei 60px
