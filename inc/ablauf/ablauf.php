@@ -26,7 +26,7 @@ declare(strict_types=1);
 /** Der Ablauf des 12. September 2026, wie er auf der Einladung steht. */
 const DUI_ABLAUF_TAG = [
     ['14:45', 'Zusammentreffen', 'Wir sammeln uns auf Hof Reismann.'],
-    ['15:00', 'Freie Trauung',   'Unser Trauredner führt uns durch den Nachmittag.'],
+    ['15:00', 'Freie Trauung',   'Unsere Traurednerin führt uns durch den Nachmittag.'],
     ['16:00', 'Sektempfang, Kaffee & Fotos', 'Zeit zum Anstoßen, für Kuchen und für Bilder.'],
     ['18:30', 'Essen & Feiern',  'Und dann bleibt der Abend uns allen.'],
 ];

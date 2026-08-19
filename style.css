@@ -164,11 +164,15 @@ Text Domain: danielundindra
     z-index: 1;
 }
 
+/* align-self: stretch hebt das align-items: start des Punktes auf – sonst
+   schrumpft die Linie auf ihre Inhaltshöhe, also auf null. Der Abstand oben
+   lässt sie unter dem Ring beginnen, unten läuft sie bis zum nächsten. */
 .dui-ablauf__punkt:not(:last-child)::after {
     content: "";
     grid-column: 2;
     grid-row: 1 / -1;
     justify-self: center;
+    align-self: stretch;
     width: 0.5px;
     margin-block-start: 1.1em;
     background: var(--dui-eukalyptus);
