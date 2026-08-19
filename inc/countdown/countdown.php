@@ -7,18 +7,20 @@
  * Vanilla JS, keine Fremdbibliothek.
  *
  *   [dui_countdown]
- *   [dui_countdown datum="2026-09-12 14:00" titel="Bis wir Ja sagen"]
+ *   [dui_countdown datum="2026-09-12 15:00" titel="Bis wir Ja sagen"]
  *
  * | Attribut  | Standard           | Bedeutung                                  |
  * |-----------|--------------------|--------------------------------------------|
- * | datum     | 2026-09-12 14:00   | Zeitpunkt, auf den gezaehlt wird           |
+ * | datum     | 2026-09-12 15:00   | Zeitpunkt, auf den gezaehlt wird           |
  * | titel     | ''                 | Zeile ueber den Kacheln, leer = keine      |
  * | sekunden  | true               | Sekundenkachel mitzeigen                   |
  */
 
 declare(strict_types=1);
 
-const DUI_COUNTDOWN_STANDARD = '2026-09-12 14:00';
+// Gezaehlt wird auf die freie Trauung um 15:00 – nicht auf das
+// Zusammentreffen um 14:45, das ist nur das Vorglühen davor.
+const DUI_COUNTDOWN_STANDARD = '2026-09-12 15:00';
 
 /**
  * Wie lange noch? Gibt die Restspanne in Einzelteilen zurueck –

@@ -15,6 +15,7 @@ declare(strict_types=1);
 /* ── Eigene Bausteine dieser Seite ───────────────────────────────────────
    Site-spezifische Features gehören ins Child; das Parent bleibt allgemein. */
 require_once __DIR__ . '/inc/countdown/countdown.php';
+require_once __DIR__ . '/inc/ablauf/ablauf.php';
 
 /**
  * Ladereihenfolge der Stylesheets geraderücken.

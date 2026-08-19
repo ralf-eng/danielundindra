@@ -123,6 +123,88 @@ Text Domain: danielundindra
 /* Ist der Tag vorbei, treten die Kacheln zurück und der Satz übernimmt. */
 .dui-countdown.is-vorbei .dui-countdown__reihe { display: none; }
 
+/* ── Ablauf des Tages ─────────────────────────────────────────────────────
+   Markup aus inc/ablauf/ablauf.php. Eine Zeitleiste von oben nach unten:
+   links die Uhrzeit, rechts die Station. Die durchgehende Linie in Eukalyptus
+   hält die vier Punkte zusammen, die goldenen Ringe markieren sie.
+
+   Bewusst eine <ol> ohne Zahlen – die Uhrzeit ist die Nummerierung. */
+.dui-ablauf {
+    list-style: none;
+    margin: var(--space-xl, 3rem) auto;
+    padding: 0;
+    max-width: 34rem;
+}
+
+.dui-ablauf__punkt {
+    display: grid;
+    grid-template-columns: auto 1.5rem 1fr;
+    align-items: start;
+    column-gap: clamp(0.75rem, 2vw, 1.25rem);
+    padding-block-end: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.dui-ablauf__punkt:last-child {
+    padding-block-end: 0;
+}
+
+/* Die Linie hängt an der mittleren Spalte, nicht am Listenpunkt selbst –
+   so endet sie beim letzten Eintrag am Ring statt darunter auszulaufen. */
+.dui-ablauf__punkt::before {
+    content: "";
+    grid-column: 2;
+    grid-row: 1 / -1;
+    justify-self: center;
+    width: 0.6rem;
+    aspect-ratio: 1;
+    margin-block-start: 0.45em;
+    border: 1.5px solid var(--dui-gold);
+    border-radius: 50%;
+    background: var(--bg-primary);
+    z-index: 1;
+}
+
+.dui-ablauf__punkt:not(:last-child)::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1 / -1;
+    justify-self: center;
+    width: 0.5px;
+    margin-block-start: 1.1em;
+    background: var(--dui-eukalyptus);
+    opacity: 0.5;
+}
+
+.dui-ablauf__zeit {
+    grid-column: 1;
+    font-family: var(--font-h3, serif);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--dui-gold);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.dui-ablauf__text {
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.dui-ablauf__titel {
+    font-family: var(--font-h3, serif);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--text-primary);
+}
+
+.dui-ablauf__zusatz {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
 /* ── Hero ─────────────────────────────────────────────────────────────────
    Die Fotos sind hell und unruhig; der Verlauf des Parents allein trägt den
    cremefarbenen Text nicht. Ein Schatten im Ton des Tiefgrüns sichert die
